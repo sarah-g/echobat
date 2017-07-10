@@ -1,0 +1,9 @@
+[Unit]
+Description=EdiBat
+
+[Service]
+ExecStart=/usr/bin/edibat.sh start
+ExecStop=/usr/bin/edibat.sh stop
+
+[Install]
+WantedBy=multi-user.target
