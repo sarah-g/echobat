@@ -3,11 +3,24 @@ import player
 import time
 from threading import Thread
 
-#audible_tracks = ['sopranopip_audible.wav', 'commonpip_audible.wav', 'noctule_audible.wav', 'serotine_audible.wav', 'leisler_audible.wav', 'brownlong_audible.wav']
-#ultra_tracks = ['sopranopip_ultra.wav', 'commonpip_ultra.wav', 'ultra_bat.wav', 'ultra_bat.wav', 'ultra_bat.wav', 'brownlong_ultra.wav']
+audible_tracks = [
+	'./media/sdcard/audio/audible/1_audible.wav', 
+	'./media/sdcard/audio/audible/2_audible.wav', 
+	'./media/sdcard/audio/audible/3_audible.wav', 
+	'./media/sdcard/audio/audible/4_audible.wav',
+	'./media/sdcard/audio/audible/5_audible.wav', 
+	'./media/sdcard/audio/audible/6_audible.wav'
+]
 
-audible_tracks = ['recording1.wav', 'recording2.wav', 'recording3.wav', 'recording4.wav', 'recording5.wav', 'recording6.wav']
-ultra_tracks = ['recording1.wav', 'recording2.wav', 'recording3.wav', 'recording4.wav', 'recording5.wav', 'recording6.wav']
+ultra_tracks = [
+	'./media/sdcard/audio/ultra/1_ultra.wav', 
+	'./media/sdcard/audio/ultra/2_ultra.wav', 
+	'./media/sdcard/audio/ultra/3_ultra.wav', 
+	'./media/sdcard/audio/ultra/4_ultra.wav',
+	'./media/sdcard/audio/ultra/5_ultra.wav', 
+	'./media/sdcard/audio/ultra/6_ultra.wav'
+]
+
 playing = False
 
 #***************************
@@ -22,7 +35,7 @@ def loop():
 #Handler for play button press events
 #***************************
 def play(args):
-	global tracks
+	#global tracks
 	global playing
 	play_button = args[0]
 	play_led = args[1]
@@ -41,14 +54,16 @@ def play(args):
 					play_led.write(1)
 					playing = True
 					if repr(toggle_switch.read()) == '1':
-						print 'playing audible bat call'
+						print 'playing audible bat call ' + str(index)
 						player.playWav(audible_tracks[index])
 					else:
-						print 'playing ultrasonic bat call'
+						print 'playing ultrasonic bat call ' + str(index)
+						player.playWav(ultra_tracks[index])
+						player.playWav(ultra_tracks[index])
 						player.playWav(ultra_tracks[index])
 					play_led.write(0)
 					playing = False
-					print 'EdiBat ready...'
+					print 'EchoBat ready...'
 					break
 
 
@@ -62,10 +77,10 @@ loopThread.start()
 #***************************
 #Initialise GPIO pins
 #***************************
-play_pin = 14 #(A0)
-led_pin = 15 #(A1)
-toggle_pin = 4 #(D4)
-selector_pins = [6,7,8,9,10,11] #(D6,D7,D8,D9,D10,D11)
+play_pin = 48 #GP15
+led_pin = 14 #GP13
+toggle_pin = 36 #GP14
+selector_pins = [47,33,46,32,45,31] #(44,45,46,47,48,49)
 
 #***************************
 #Define IOs
@@ -92,4 +107,4 @@ play_args = [play_button, play_led, toggle_switch, selector_switch]
 play_button.isr(mraa.EDGE_BOTH, play, play_args)
 
 play_led.write(0)
-print 'EdiBat ready...'
+print 'EchoBat ready...'
