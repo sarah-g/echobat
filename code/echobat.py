@@ -4,21 +4,21 @@ import time
 from threading import Thread
 
 audible_tracks = [
-	'./media/sdcard/audio/audible/1_audible.wav', 
-	'./media/sdcard/audio/audible/2_audible.wav', 
-	'./media/sdcard/audio/audible/3_audible.wav', 
-	'./media/sdcard/audio/audible/4_audible.wav',
-	'./media/sdcard/audio/audible/5_audible.wav', 
-	'./media/sdcard/audio/audible/6_audible.wav'
+	'/media/sdcard/audio/audible/1_audible.wav', 
+	'/media/sdcard/audio/audible/2_audible.wav', 
+	'/media/sdcard/audio/audible/3_audible.wav', 
+	'/media/sdcard/audio/audible/4_audible.wav',
+	'/media/sdcard/audio/audible/5_audible.wav', 
+	'/media/sdcard/audio/audible/6_audible.wav'
 ]
 
 ultra_tracks = [
-	'./media/sdcard/audio/ultra/1_ultra.wav', 
-	'./media/sdcard/audio/ultra/2_ultra.wav', 
-	'./media/sdcard/audio/ultra/3_ultra.wav', 
-	'./media/sdcard/audio/ultra/4_ultra.wav',
-	'./media/sdcard/audio/ultra/5_ultra.wav', 
-	'./media/sdcard/audio/ultra/6_ultra.wav'
+	'/media/sdcard/audio/ultra/1_ultra.wav', 
+	'/media/sdcard/audio/ultra/2_ultra.wav', 
+	'/media/sdcard/audio/ultra/3_ultra.wav', 
+	'/media/sdcard/audio/ultra/4_ultra.wav',
+	'/media/sdcard/audio/ultra/5_ultra.wav', 
+	'/media/sdcard/audio/ultra/6_ultra.wav'
 ]
 
 playing = False
@@ -59,7 +59,9 @@ def play(args):
 					else:
 						print 'playing ultrasonic bat call ' + str(index)
 						player.playWav(ultra_tracks[index])
+						#time.sleep(5)
 						player.playWav(ultra_tracks[index])
+						#time.sleep(5)
 						player.playWav(ultra_tracks[index])
 					play_led.write(0)
 					playing = False
