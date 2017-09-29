@@ -1,0 +1,9 @@
+[Unit]
+Description=EchoBat
+
+[Service]
+ExecStart=/usr/bin/echobat.sh start
+ExecStop=/usr/bin/echobat.sh stop
+
+[Install]
+WantedBy=multi-user.target
